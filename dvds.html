@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Disc Locator - jQuery in Action, 3rd edition</title>
+    <link rel="stylesheet" href="css/main.css"/>
+    <style>
+        html {
+            background-image: url("images/background.jpg");
+        }
+
+        body {
+            padding: 1em;
+            background-color: #FFFFFF;
+        }
+
+        .templates {
+            display: none;
+        }
+
+        .filter {
+            margin-bottom: 0.5em;
+        }
+
+        .template.qualifier {
+            display: inline-block;
+            /* IE 6-7 Hack */
+            *display: inline;
+            zoom: 1;
+        }
+
+        #results {
+            margin: 1em auto;
+            border-collapse: collapse;
+        }
+
+        #results th,
+        #results td {
+            padding: 0.2em 0.5em;
+        }
+
+        #results tr:nth-child(odd) {
+            background-color: #71A9D6;
+        }
+    </style>
+</head>
+<body>
+    <h1>Disc Locator</h1>
+    <!-- Filters: Add Filter, Apply Filters -->
+    <form id="form-filters" action="#">
+        <fieldset>
+            <legend>Filters</legend>
+            <div id="filters">
+            </div>
+            <div class="buttons-wrapper">
+                <input type="button" id="filter-add" value="Add Filter"/>
+                <input type="submit" id="filter-apply" value="Apply Filters"/>
+            </div>
+        </fieldset>
+    </form>
+    <!-- Results -->
+    <div id="panel-results">
+        <table id="results">
+            <tr>
+                <th>Title</th>
+                <th>Year</th>
+                <th>Binder</th>
+                <th>Page</th>
+                <th>Slot</th>
+                <th>Viewed</th>
+            </tr>
+        </table>
+    </div>
+    <!-- Hidden templates -->
+    <div class="templates">
+        <div class="template filter-chooser">
+            <input type="button" class="filter-remover" value="X"/>
+            <select name="filter" class="filter-type">
+                <option value="" data-template-type="" selected="selected">Choose a filter</option>
+                <option value="title" data-template-type="template-title">DVD Title</option>
+                <option value="binder" data-template-type="template-binder">Binder</option>
+                <option value="year" data-template-type="template-year">Release Date</option>
+                <option value="viewed" data-template-type="template-viewed">Viewed?</option>
+            </select>
+        </div>
+
+        <div class="template template-title">
+            <select name="title-condition">
+                <option value="contains">contains</option>
+                <option value="starts-with">starts with</option>
+                <option value="ends-with">ends with</option>
+                <option value="equal">is exactly</option>
+            </select>
+            <input type="text" name="title"/>
+        </div>
+
+        <div class="template template-binder">
+            <input type="text" name="binder-min" class="numeric"/> <span>through</span>
+            <input type="text" name="binder-max" class="numeric"/>
+        </div>
+
+        <div class="template template-year">
+            <input type="text" name="year-min" class="date"/> <span>through</span>
+            <input type="text" name="year-max" class="date"/>
+        </div>
+
+        <div class="template template-viewed">
+            <label><input type="radio" name="viewed" value="true" checked="checked"/> Yes</label>
+            <label><input type="radio" name="viewed" value="false"/> No</label>
+        </div>
+
+    </div>
+
+    <script src="js/jquery-1.11.3.min.js"></script>
+
+</body>
+</html>
